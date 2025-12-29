@@ -1,83 +1,83 @@
-# 需求文档
+# Requirements Document
 
-## 介绍
+## Introduction
 
-Fractal Docs 是一套基于 Kiro Steering 机制的文档维护规范，通过自动加载的规则文件和文件引用语法，实现分形结构的文档管理。系统通过标准化的文档模板和自指更新提醒，实现文档的自动维护。
+Fractal Docs is a documentation maintenance specification based on the Kiro Steering mechanism. It achieves fractal-structured document management through auto-loading rule files and file reference syntax. The system enables automatic documentation maintenance through standardized document templates and self-referential update reminders.
 
-设计灵感来自《哥德尔、埃舍尔、巴赫》中的自指和递归概念。
+The design is inspired by the concepts of self-reference and recursion from "Gödel, Escher, Bach".
 
-## 术语表
+## Glossary
 
-- **Steering**: Kiro 的规则加载机制，通过 `.kiro/steering/*.md` 文件自动注入上下文
-- **文件引用**: Kiro 的 `#[[file:path]]` 语法，自动拉取指定文件内容到上下文
-- **分形结构**: 每个层级都遵循相同文档模式的递归结构
-- **自指提醒**: 文档中包含的更新提醒文本，触发 AI 自动维护相关文档
-- **三行注释**: 每个文件开头的 input/output/pos 标准注释格式
-- **inclusion 模式**: Steering 文件的加载方式（always/fileMatch/manual）
+- **Steering**: Kiro's rule-loading mechanism, which automatically injects context via `.kiro/steering/*.md` files.
+- **File Reference**: Kiro's `#[[file:path]]` syntax, which automatically fetches the content of the specified file into the context.
+- **Fractal Structure**: A recursive structure where each level follows the same documentation pattern.
+- **Self-referential Reminder**: Update reminder text within a document that triggers the AI to automatically maintain related documents.
+- **Three-line Comment**: The standard input/output/pos comment format at the beginning of each file.
+- **Inclusion Mode**: The loading method for Steering files (always/fileMatch/manual).
 
-## 需求
+## Requirements
 
-### 需求 1: Kiro Steering 规则配置
+### Requirement 1: Kiro Steering Rule Configuration
 
-**用户故事:** 作为开发者，我希望通过 Kiro Steering 机制自动加载文档维护规则。
+**User Story:** As a developer, I want to automatically load documentation maintenance rules through the Kiro Steering mechanism.
 
-#### 验收标准
+#### Acceptance Criteria
 
-1. Steering 系统自动加载 `.kiro/steering/` 目录下的规则文件
-2. 规则文件设置 `inclusion: always` 时，每次交互都加载
-3. 规则文件使用 `#[[file:path]]` 语法时，自动拉取引用文件的内容
-4. AI 修改代码文件时，Steering 规则提醒执行文档维护步骤
+1. The Steering system automatically loads rule files from the `.kiro/steering/` directory.
+2. When a rule file is set to `inclusion: always`, it is loaded with every interaction.
+3. When a rule file uses the `#[[file:path]]` syntax, the content of the referenced file is automatically fetched.
+4. When the AI modifies a code file, the Steering rules prompt the execution of documentation maintenance steps.
 
-### 需求 2: 文档模板标准化
+### Requirement 2: Standardized Document Templates
 
-**用户故事:** 作为开发者，我希望有标准化的文档模板。
+**User Story:** As a developer, I want standardized document templates.
 
-#### 验收标准
+#### Acceptance Criteria
 
-1. 文件夹 README.md 使用标准的架构说明 + 文件索引格式
-2. 文件头部注释使用标准的 input/output/pos 格式
-3. 更新提醒使用标准的自指提醒文本
-4. 不同文件类型使用对应语言的注释格式
+1. Folder README.md files use the standard architecture description + file index format.
+2. File header comments use the standard input/output/pos format.
+3. Update reminders use the standard self-referential reminder text.
+4. Different file types use the corresponding language's comment format.
 
-### 需求 3: 项目结构导航
+### Requirement 3: Project Structure Navigation
 
-**用户故事:** 作为开发者，我希望 AI 能快速了解项目结构。
+**User Story:** As a developer, I want the AI to quickly understand the project structure.
 
-#### 验收标准
+#### Acceptance Criteria
 
-1. Steering 系统通过文件引用自动加载核心目录的 README.md
-2. 目录索引提供文件名和功能描述的对应关系
-3. 新建文件时，目录索引提供命名规范参考
+1. The Steering system automatically loads the README.md of core directories through file references.
+2. The directory index provides a mapping between file names and feature descriptions.
+3. When creating a new file, the directory index provides a reference for naming conventions.
 
-### 需求 4: 分形结构自维护
+### Requirement 4: Fractal Structure Self-Maintenance
 
-**用户故事:** 作为开发者，我希望文档系统能够通过自指机制实现自我维护。
+**User Story:** As a developer, I want the documentation system to be self-maintaining through a self-referential mechanism.
 
-#### 验收标准
+#### Acceptance Criteria
 
-1. 文档包含更新相关文档的自指提醒
-2. 文件夹结构变化时，AI 自动更新当前目录和上级目录的 README.md
-3. 新增文件时，AI 自动更新所属文件夹的文件索引
-4. 修改代码文件时，AI 自动更新文件头部的注释
+1. Documents contain self-referential reminders to update related documents.
+2. When the folder structure changes, the AI automatically updates the README.md of the current and parent directories.
+3. When a new file is added, the AI automatically updates the file index of the parent folder.
+4. When a code file is modified, the AI automatically updates the header comment of the file.
 
-### 需求 5: 增量更新保护
+### Requirement 5: Incremental Update Protection
 
-**用户故事:** 作为开发者，我希望 AI 在更新文档时先读取现有内容再增量更新。
+**User Story:** As a developer, I want the AI to read existing content before incrementally updating documents.
 
-#### 验收标准
+#### Acceptance Criteria
 
-1. AI 更新 README.md 时先检查文件是否存在
-2. README.md 已存在时先读取再增量更新
-3. README.md 不存在时使用模板创建
-4. 更新文件头部注释时保留现有注释并更新
+1. When updating a README.md, the AI first checks if the file exists.
+2. If the README.md already exists, it is read before being incrementally updated.
+3. If the README.md does not exist, it is created from a template.
+4. When updating a file header comment, the existing comment is preserved and updated.
 
-### 需求 6: 文档维护报告
+### Requirement 6: Documentation Maintenance Report
 
-**用户故事:** 作为开发者，我希望 AI 完成代码修改后输出文档维护报告。
+**User Story:** As a developer, I want the AI to output a documentation maintenance report after completing code modifications.
 
-#### 验收标准
+#### Acceptance Criteria
 
-1. AI 完成代码修改时输出标准格式的文档维护报告
-2. 报告包含修改的文件列表和状态
-3. 报告包含 README.md 更新状态
-4. 报告包含上级目录检查结果
+1. When code modifications are complete, the AI outputs a standard-format documentation maintenance report.
+2. The report includes a list of modified files and their statuses.
+3. The report includes the update status of README.md files.
+4. The report includes the results of the parent directory check.

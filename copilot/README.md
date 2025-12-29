@@ -1,33 +1,33 @@
-# GitHub Copilot 初始化指南
+# GitHub Copilot Initialization Guide
 
-## 核心概念
+## Core Concepts
 
-- **INIT_PROMPT.md** = 一次性初始化指令（复制到 chat 执行后就不需要了）
-- **生成的规则** = 持久配置（每次 AI 交互都会加载）
+- **INIT_PROMPT.md** = One-time initialization instructions (no longer needed after copying to chat)
+- **Generated Rules** = Persistent configuration (loaded with each AI interaction)
 
-## 使用方法
+## How to Use
 
-1. 将 `INIT_PROMPT.md` 的内容复制到 GitHub Copilot Chat 中
-2. AI 会分析你的项目并生成 `.github/copilot-instructions.md`
-3. 初始化完成后，`INIT_PROMPT.md` 就不再需要了
+1. Copy the content of `INIT_PROMPT.md` into the GitHub Copilot Chat
+2. The AI will analyze your project and generate `.github/copilot-instructions.md`
+3. After initialization, `INIT_PROMPT.md` is no longer needed
 
-## 初始化后会生成
+## What's Generated After Initialization
 
 ```
 your-project/
 ├── .github/
-│   └── copilot-instructions.md         # 项目指令（持久）
-└── [核心目录]/README.md                # 目录索引（持久）
+│   └── copilot-instructions.md         # Project instructions (persistent)
+└── [core-directory]/README.md          # Directory index (persistent)
 ```
 
-## 生成的规则说明
+## Explanation of Generated Rules
 
-| 文件 | 作用 | 加载时机 |
-|------|------|----------|
-| `copilot-instructions.md` | 项目指令（包含文档维护规则和项目结构） | 每次对话 |
+| File | Purpose | When Loaded |
+|------|---------|-------------|
+| `copilot-instructions.md` | Project instructions (including doc maintenance rules and project structure) | Every conversation |
 
-## GitHub Copilot 特性
+## GitHub Copilot Features
 
-- 只支持单一配置文件 `.github/copilot-instructions.md`
-- 不支持条件加载
-- 不支持文件引用语法
+- Only supports a single configuration file: `.github/copilot-instructions.md`
+- Does not support conditional loading
+- Does not support file reference syntax

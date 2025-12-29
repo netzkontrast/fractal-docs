@@ -1,32 +1,32 @@
-# Claude Code 初始化指南
+# Claude Code Initialization Guide
 
-## 核心概念
+## Core Concepts
 
-- **INIT_PROMPT.md** = 一次性初始化指令（复制到 chat 执行后就不需要了）
-- **生成的规则** = 持久配置（每次 AI 交互都会加载）
+- **INIT_PROMPT.md** = One-time initialization instructions (no longer needed after copying to chat)
+- **Generated Rules** = Persistent configuration (loaded with each AI interaction)
 
-## 使用方法
+## How to Use
 
-1. 将 `INIT_PROMPT.md` 的内容复制到 Claude Code 的 chat 中
-2. AI 会分析你的项目并生成配置文件
-3. 初始化完成后，`INIT_PROMPT.md` 就不再需要了
+1. Copy the content of `INIT_PROMPT.md` into the Claude Code chat
+2. The AI will analyze your project and generate configuration files
+3. After initialization, `INIT_PROMPT.md` is no longer needed
 
-## 初始化后会生成
+## What's Generated After Initialization
 
 ```
 your-project/
-├── CLAUDE.md                           # 项目配置（持久）
+├── CLAUDE.md                           # Project configuration (persistent)
 ├── .claude/
 │   └── rules/
-│       ├── doc-maintenance.md          # 文档维护规则（持久）
-│       └── project-structure.md        # 项目结构导航（持久）
-└── [核心目录]/README.md                # 目录索引（持久）
+│       ├── doc-maintenance.md          # Documentation maintenance rules (persistent)
+│       └── project-structure.md        # Project structure navigation (persistent)
+└── [core-directory]/README.md          # Directory index (persistent)
 ```
 
-## 生成的规则说明
+## Explanation of Generated Rules
 
-| 文件 | 作用 | 加载时机 |
-|------|------|----------|
-| `CLAUDE.md` | 项目基本信息 | 每次对话 |
-| `.claude/rules/doc-maintenance.md` | 文档维护规则 | 修改代码文件时 |
-| `.claude/rules/project-structure.md` | 项目结构导航 | 每次对话 |
+| File | Purpose | When Loaded |
+|------|---------|-------------|
+| `CLAUDE.md` | Basic project information | Every conversation |
+| `.claude/rules/doc-maintenance.md` | Documentation maintenance rules | When code files are modified |
+| `.claude/rules/project-structure.md` | Project structure navigation | Every conversation |

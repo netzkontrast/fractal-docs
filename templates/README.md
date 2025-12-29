@@ -1,21 +1,21 @@
-# 模板参考
+# Template Reference
 
-这里是通用模板，供各编辑器初始化时参考。
+These are general templates for reference during initialization in various editors.
 
-## 目录结构
+## Directory Structure
 
 ```
 templates/
-├── zh/                      # 中文模板
-│   ├── file-header-ts.txt   # TypeScript 文件头注释
-│   └── folder-readme.md     # 文件夹 README 模板
-└── en/                      # 英文模板
+├── zh/                      # Chinese templates
+│   ├── file-header-ts.txt   # TypeScript file header comment
+│   └── folder-readme.md     # Folder README template
+└── en/                      # English templates
     ├── file-header-ts.txt
     └── folder-readme.md
 ```
 
-## 使用说明
+## How to Use
 
-这些模板是**参考**，AI 在执行初始化任务时会根据项目实际情况生成适配的版本。
+These templates are for **reference**. The AI will generate adapted versions based on the project's actual situation when executing the initialization task.
 
-如果需要其他语言的文件头注释模板（Go/Rust/Python），AI 会根据 TypeScript 模板的格式自动生成。
+If file header comment templates for other languages are needed (Go/Rust/Python), the AI will automatically generate them based on the format of the TypeScript template.

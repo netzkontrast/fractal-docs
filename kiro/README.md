@@ -1,42 +1,42 @@
-# Kiro 初始化指南
+# Kiro Initialization Guide
 
-## 核心概念
+## Core Concepts
 
-- **Spec** = 一次性初始化任务（执行完成后 Spec 就不再需要了）
-- **生成的 Steering** = 持久配置（每次 AI 交互都会加载）
+- **Spec** = One-time initialization task (no longer needed after execution)
+- **Generated Steering** = Persistent configuration (loaded with each AI interaction)
 
-## 使用方法
+## How to Use
 
-1. 复制 `.kiro/specs/fractal-docs/` 到你的项目
-2. 在 Kiro 中打开 `tasks.md`
-3. 让 AI 执行 Spec 中的任务
-4. 初始化完成后，可以删除 `specs/fractal-docs/` 目录
+1. Copy `.kiro/specs/fractal-docs/` to your project
+2. Open `tasks.md` in Kiro
+3. Let the AI execute the tasks in the Spec
+4. After initialization, you can delete the `specs/fractal-docs/` directory
 
-## 初始化后会生成
+## What's Generated After Initialization
 
 ```
 your-project/
 ├── .kiro/
 │   ├── steering/
-│   │   ├── doc-maintenance.md          # 文档维护规则（持久）
-│   │   └── project-structure.md        # 项目结构导航（持久）
+│   │   ├── doc-maintenance.md          # Documentation maintenance rules (persistent)
+│   │   └── project-structure.md        # Project structure navigation (persistent)
 │   └── templates/
-│       ├── folder-readme.md            # 文件夹 README 模板
-│       └── file-header-*.txt           # 文件头注释模板
-└── [核心目录]/README.md                # 目录索引（持久）
+│       ├── folder-readme.md            # Folder README template
+│       └── file-header-*.txt           # File header comment template
+└── [core-directory]/README.md          # Directory index (persistent)
 ```
 
-## 生成的规则说明
+## Explanation of Generated Rules
 
-| 文件 | 作用 | 加载时机 |
-|------|------|----------|
-| `doc-maintenance.md` | 文档维护规则 | 每次对话（inclusion: always） |
-| `project-structure.md` | 项目结构导航 | 每次对话（inclusion: always） |
-| `templates/` | 文档模板 | 通过 `#[[file:path]]` 引用 |
+| File | Purpose | When Loaded |
+|------|---------|-------------|
+| `doc-maintenance.md` | Documentation maintenance rules | Every conversation (inclusion: always) |
+| `project-structure.md` | Project structure navigation | Every conversation (inclusion: always) |
+| `templates/` | Document templates | Referenced via `#[[file:path]]` |
 
-## Kiro 特性
+## Kiro Features
 
-- 支持 Spec 系统（结构化任务执行）
-- 支持 `#[[file:path]]` 文件引用语法
-- 支持 `inclusion: fileMatch` 条件加载
-- Steering 文件自动加载到上下文
+- Supports the Spec system (structured task execution)
+- Supports `#[[file:path]]` file reference syntax
+- Supports `inclusion: fileMatch` for conditional loading
+- Steering files are automatically loaded into the context

@@ -5,133 +5,131 @@
 </p>
 
 <p align="center">
-  <strong>🌀 让 AI 编程助手自动理解你的项目结构</strong><br>
   <strong>🌀 Let AI coding assistants automatically understand your project structure</strong>
 </p>
 
 ---
 
-## 这是什么？
+## What is this?
 
-Fractal Docs 是一套**自维护文档系统**，让 AI 编程助手能够：
-- 自动理解你的项目结构
-- 修改代码时自动维护文档
-- 防止覆盖已有文档内容
+Fractal Docs is a **self-maintaining documentation system** that enables AI coding assistants to:
+- Automatically understand your project structure
+- Automatically maintain documentation when modifying code
+- Prevent overwriting existing documentation content
 
-设计灵感来自《哥德尔、埃舍尔、巴赫》中的自指和递归概念。
+The design is inspired by the concepts of self-reference and recursion from "Gödel, Escher, Bach".
 
-## 支持的编辑器
+## Supported Editors
 
-| 编辑器 | 初始化方式 | 生成的持久配置 |
-|--------|-----------|----------------|
-| **Kiro** | 执行 Spec | `.kiro/steering/` + `.kiro/templates/` |
-| **Claude Code** | 复制 INIT_PROMPT 到 chat | `CLAUDE.md` + `.claude/rules/` |
-| **Cursor** | 复制 INIT_PROMPT 到 chat | `.cursor/rules/*.mdc` |
-| **Windsurf** | 复制 INIT_PROMPT 到 chat | `.windsurf/rules/` |
-| **Cline** | 复制 INIT_PROMPT 到 chat | `.clinerules/` |
-| **GitHub Copilot** | 复制 INIT_PROMPT 到 chat | `.github/copilot-instructions.md` |
+| Editor | Initialization Method | Generated Persistent Configuration |
+|---|---|---|
+| **Kiro** | Execute Spec | `.kiro/steering/` + `.kiro/templates/` |
+| **Claude Code**| Copy INIT_PROMPT to chat | `CLAUDE.md` + `.claude/rules/` |
+| **Cursor** | Copy INIT_PROMPT to chat | `.cursor/rules/*.mdc` |
+| **Windsurf** | Copy INIT_PROMPT to chat | `.windsurf/rules/` |
+| **Cline** | Copy INIT_PROMPT to chat | `.clinerules/` |
+| **GitHub Copilot**| Copy INIT_PROMPT to chat | `.github/copilot-instructions.md` |
 
-## 快速开始
+## Quick Start
 
-### 1. 选择你的编辑器
+### 1. Choose Your Editor
 
 ```bash
 git clone https://github.com/wordflowlab/fractal-docs.git
 ```
 
-### 2. 按编辑器初始化
+### 2. Initialize Based on Your Editor
 
-#### Kiro（推荐）
+#### Kiro (Recommended)
 
 ```bash
-# 复制 Spec 到你的项目
+# Copy the Spec to your project
 cp -r fractal-docs/kiro/.kiro/specs/fractal-docs your-project/.kiro/specs/
 
-# 在 Kiro 中打开 tasks.md，让 AI 执行
+# Open tasks.md in Kiro and let the AI execute it
 ```
 
 #### Claude Code
 
 ```bash
-# 复制 INIT_PROMPT.md 的内容到 Claude Code chat
+# Copy the content of INIT_PROMPT.md to the Claude Code chat
 cat fractal-docs/claude-code/INIT_PROMPT.md
 ```
 
 #### Cursor
 
 ```bash
-# 复制 INIT_PROMPT.md 的内容到 Cursor chat
+# Copy the content of INIT_PROMPT.md to the Cursor chat
 cat fractal-docs/cursor/INIT_PROMPT.md
 ```
 
 #### Windsurf / Cline / Copilot
 
-同上，复制对应目录下的 `INIT_PROMPT.md` 内容到 chat。
+Same as above, copy the content of `INIT_PROMPT.md` from the corresponding directory to the chat.
 
-### 3. AI 执行初始化
+### 3. AI Executes Initialization
 
-AI 会：
-1. 分析你的项目结构
-2. 询问核心目录和语言偏好
-3. 生成适配的配置文件
-4. 创建核心目录的 README.md
+The AI will:
+1. Analyze your project structure
+2. Ask for core directories and language preference
+3. Generate adapted configuration files
+4. Create README.md for the core directories
 
-### 4. 完成
+### 4. Done
 
-之后每次 AI 修改代码时，都会自动维护文档。
+After that, every time the AI modifies the code, it will automatically maintain the documentation.
 
-## 项目结构
+## Project Structure
 
 ```
 fractal-docs/
-├── kiro/                    # Kiro 配置（Spec 方式）
+├── kiro/                    # Kiro configuration (Spec method)
 │   └── .kiro/specs/fractal-docs/
-├── claude-code/             # Claude Code 配置
+├── claude-code/             # Claude Code configuration
 │   ├── README.md
 │   └── INIT_PROMPT.md
-├── cursor/                  # Cursor 配置
+├── cursor/                  # Cursor configuration
 │   ├── README.md
 │   └── INIT_PROMPT.md
-├── windsurf/                # Windsurf 配置
-├── cline/                   # Cline 配置
-├── copilot/                 # GitHub Copilot 配置
-└── templates/               # 通用模板参考
-    ├── zh/                  # 中文模板
-    └── en/                  # 英文模板
+├── windsurf/                # Windsurf configuration
+├── cline/                   # Cline configuration
+├── copilot/                 # GitHub Copilot configuration
+└── templates/               # General template reference
+    └── en/                  # English templates
 ```
 
-## 核心特性
+## Core Features
 
-- **🔄 自我维护** - 文档包含自指提醒，触发 AI 自动更新相关文档
-- **📁 分形结构** - 每个目录遵循相同模式：架构说明 + 文件索引
-- **🛡️ 增量更新** - "先读后写"规则防止意外覆盖
-- **🤖 多编辑器** - 支持主流 AI 编辑器
-- **🌍 双语** - 支持中文和英文
+- **🔄 Self-maintaining** - Documents contain self-referential reminders, triggering the AI to automatically update related documents
+- **📁 Fractal Structure** - Each directory follows the same pattern: architecture description + file index
+- **🛡️ Incremental Updates** - "Read before write" rule prevents accidental overwrites
+- **🤖 Multi-editor** - Supports mainstream AI editors
+- **🌍 Bilingual** - Supports Chinese and English
 
-## 初始化后会生成什么？
+## What's Generated After Initialization?
 
-以 Kiro 为例：
+Taking Kiro as an example:
 
 ```
 your-project/
 ├── .kiro/
 │   ├── steering/
-│   │   ├── doc-maintenance.md    # 文档维护规则（持久）
-│   │   └── project-structure.md  # 项目结构导航（持久）
+│   │   ├── doc-maintenance.md    # Documentation maintenance rules (persistent)
+│   │   └── project-structure.md  # Project structure navigation (persistent)
 │   └── templates/
-│       ├── folder-readme.md      # 文件夹 README 模板
-│       └── file-header-*.txt     # 文件头注释模板
-└── [核心目录]/README.md          # 目录索引（持久）
+│       ├── folder-readme.md      # Folder README template
+│       └── file-header-*.txt     # File header comment template
+└── [core-directory]/README.md    # Directory index (persistent)
 ```
 
-## 各编辑器特性对比
+## Comparison of Editor Features
 
-| 特性 | Kiro | Claude Code | Cursor | Windsurf |
-|------|------|-------------|--------|----------|
-| 文件引用 | `#[[file:path]]` | `@path` | `@filename` | ❌ |
-| 条件加载 | `inclusion: fileMatch` | `paths` 字段 | `globs` | Glob 模式 |
-| 模块化规则 | `.kiro/steering/` | `.claude/rules/` | `.cursor/rules/` | `.windsurf/rules/` |
-| Spec 系统 | ✅ | ❌ | ❌ | ❌ |
+| Feature | Kiro | Claude Code | Cursor | Windsurf |
+|---|---|---|---|---|
+| File Reference | `#[[file:path]]` | `@path` | `@filename` | ❌ |
+| Conditional Loading| `inclusion: fileMatch` | `paths` field | `globs` | Glob pattern |
+| Modular Rules | `.kiro/steering/` | `.claude/rules/` | `.cursor/rules/` | `.windsurf/rules/` |
+| Spec System | ✅ | ❌ | ❌ | ❌ |
 
 ## License
 
