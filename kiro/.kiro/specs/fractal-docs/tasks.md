@@ -1,171 +1,171 @@
-# 实施计划: Fractal Docs 文档系统初始化
+# Implementation Plan: Fractal Docs Documentation System Initialization
 
-## 概述
+## Overview
 
-基于 Kiro Steering 机制实现分形文档管理系统。通过创建 Steering 规则文件、文档模板和目录索引，让 AI 在每次交互时自动获取项目结构并执行文档维护。
+Implement a fractal document management system based on the Kiro Steering mechanism. By creating Steering rule files, document templates, and a directory index, the AI will automatically obtain the project structure and perform documentation maintenance during each interaction.
 
-## 前置确认
+## Pre-execution Confirmation
 
-在执行任务前，请与用户确认：
-1. 使用中文还是英文版本？
-2. 项目的核心目录有哪些？（如 src/components、src/services 等）
-3. 项目使用的技术栈？（TypeScript/Go/Rust/Python 等）
+Before executing the tasks, please confirm with the user:
+1. Use the Chinese or English version?
+2. What are the core directories of the project? (e.g., src/components, src/services, etc.)
+3. What is the project's tech stack? (TypeScript/Go/Rust/Python, etc.)
 
-## 任务
+## Tasks
 
-- [ ] 1. 分析项目结构
-  - [ ] 1.1 扫描项目目录结构
-    - 使用 listDirectory 扫描项目根目录
-    - 识别前端/后端目录
-    - 识别核心业务目录
-    - 识别技术栈
-    - _需求: 3.1, 3.2_
+- [ ] 1. Analyze Project Structure
+  - [ ] 1.1 Scan project directory structure
+    - Use listDirectory to scan the project root
+    - Identify front-end/back-end directories
+    - Identify core business directories
+    - Identify tech stack
+    - _Requirements: 3.1, 3.2_
 
-  - [ ] 1.2 确定需要索引的核心目录
-    - 列出建议索引的目录
-    - 与用户确认目录列表
-    - _需求: 3.2, 3.3_
+  - [ ] 1.2 Determine core directories to be indexed
+    - List recommended directories for indexing
+    - Confirm the directory list with the user
+    - _Requirements: 3.2, 3.3_
 
-- [ ] 2. 创建 Steering 规则文件
-  - [ ] 2.1 创建 `.kiro/steering/doc-maintenance.md`
-    - 设置 `inclusion: always` 确保每次加载
-    - 定义文档维护强制规则（包含"先读取再更新"）
-    - 使用 `#[[file:path]]` 引用模板文件
-    - _需求: 1.1, 1.2, 1.3, 1.4, 5.1, 5.2_
+- [ ] 2. Create Steering Rule Files
+  - [ ] 2.1 Create `.kiro/steering/doc-maintenance.md`
+    - Set `inclusion: always` to ensure it's loaded every time
+    - Define mandatory documentation maintenance rules (including "read before updating")
+    - Use `#[[file:path]]` to reference template files
+    - _Requirements: 1.1, 1.2, 1.3, 1.4, 5.1, 5.2_
 
-  - [ ] 2.2 创建 `.kiro/steering/project-structure.md`
-    - 设置 `inclusion: always` 确保每次加载
-    - 使用 `#[[file:path]]` 引用核心目录的 README.md
-    - _需求: 3.1, 3.2_
+  - [ ] 2.2 Create `.kiro/steering/project-structure.md`
+    - Set `inclusion: always` to ensure it's loaded every time
+    - Use `#[[file:path]]` to reference the README.md of core directories
+    - _Requirements: 3.1, 3.2_
 
-- [ ] 3. 创建文档模板库
-  - [ ] 3.1 创建 `.kiro/templates/folder-readme.md`
-    - 包含架构说明占位符
-    - 包含文件索引占位符
-    - 包含自指更新提醒
-    - _需求: 2.1, 4.1_
+- [ ] 3. Create Document Template Library
+  - [ ] 3.1 Create `.kiro/templates/folder-readme.md`
+    - Include a placeholder for the architecture description
+    - Include a placeholder for the file index
+    - Include a self-referential update reminder
+    - _Requirements: 2.1, 4.1_
 
-  - [ ] 3.2 创建文件头部注释模板（根据项目技术栈选择）
+  - [ ] 3.2 Create file header comment templates (select based on the project's tech stack)
     - TypeScript: `.kiro/templates/file-header-ts.txt`
     - Go: `.kiro/templates/file-header-go.txt`
     - Rust: `.kiro/templates/file-header-rs.txt`
     - Python: `.kiro/templates/file-header-py.txt`
-    - _需求: 2.2, 2.4_
+    - _Requirements: 2.2, 2.4_
 
-- [ ] 4. 创建核心目录索引
-  - [ ] 4.1 为每个核心目录创建 README.md
-    - 使用 folder-readme.md 模板
-    - 填写架构说明（3行以内）
-    - 列出文件索引
-    - _需求: 3.1, 3.2, 3.3, 4.2, 4.3_
+- [ ] 4. Create Core Directory Index
+  - [ ] 4.1 Create a README.md for each core directory
+    - Use the folder-readme.md template
+    - Fill in the architecture description (within 3 lines)
+    - List the file index
+    - _Requirements: 3.1, 3.2, 3.3, 4.2, 4.3_
 
-- [ ] 5. 验证系统效果
-  - [ ] 5.1 验证 Steering 规则加载
-    - 修改代码文件，观察 AI 是否自动执行文档维护
-    - 检查文档维护报告是否正确输出
-    - _需求: 1.4, 6.1, 6.2_
+- [ ] 5. Verify System Effectiveness
+  - [ ] 5.1 Verify Steering rule loading
+    - Modify a code file and observe if the AI automatically performs documentation maintenance
+    - Check if the documentation maintenance report is correctly outputted
+    - _Requirements: 1.4, 6.1, 6.2_
 
-  - [ ] 5.2 验证增量更新
-    - 修改已有 README.md 的目录中的文件
-    - 检查 AI 是否先读取再更新
-    - _需求: 5.1, 5.2, 5.3, 5.4_
+  - [ ] 5.2 Verify incremental updates
+    - Modify a file in a directory that already has a README.md
+    - Check if the AI reads the file before updating
+    - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-## 模板参考
+## Template Reference
 
-### doc-maintenance.md 模板
+### doc-maintenance.md Template
 
 ```markdown
 ---
 inclusion: always
 ---
 
-# 文档维护自动提醒
+# Automatic Documentation Maintenance Reminder
 
-当你修改或创建代码文件时，**必须**执行以下文档维护步骤：
+When you modify or create code files, you **must** perform the following documentation maintenance steps:
 
-## 0. 先读取现有文档（重要！）
+## 0. Read Existing Documentation First (Important!)
 
-修改文件前，**必须先检查并读取**：
-- 所属文件夹是否已有 README.md？**如果有，先用 readFile 读取它**
-- 文件是否已有头部注释？**如果有，保留并更新**
+Before modifying a file, you **must check and read**:
+- Does the parent folder already have a README.md? **If so, read it first using readFile**
+- Does the file already have a header comment? **If so, preserve and update it**
 
-⚠️ **禁止直接覆盖创建**：不要在不读取的情况下直接创建 README.md！
+⚠️ **Do not overwrite directly**: Do not create a README.md without reading the existing one first!
 
-## 1. 文件头部注释
+## 1. File Header Comment
 
 #[[file:.kiro/templates/file-header-ts.txt]]
 
-## 2. 文件夹 README.md
+## 2. Folder README.md
 
 #[[file:.kiro/templates/folder-readme.md]]
 
-- **如果 README.md 已存在**：先读取，然后增量更新文件索引部分
-- **如果 README.md 不存在**：使用上述模板创建新文件
+- **If README.md already exists**: Read it first, then incrementally update the file index section.
+- **If README.md does not exist**: Create a new file using the template above.
 
-## 3. 上级目录传播
+## 3. Propagate to Parent Directories
 
-检查上级目录的 README.md 是否需要更新。
+Check if the README.md in the parent directory needs to be updated.
 
-## 4. 文档维护报告
+## 4. Documentation Maintenance Report
 
-完成代码修改后，输出报告。
+Output a report after completing code modifications.
 ```
 
-### project-structure.md 模板
+### project-structure.md Template
 
 ```markdown
 ---
 inclusion: always
 ---
 
-# 项目结构导航
+# Project Structure Navigation
 
-{项目简介}
+{Project Introduction}
 
-## 核心目录索引
+## Core Directory Index
 
-### {目录1名称}
+### {Directory 1 Name}
 #[[file:{path/to/dir1}/README.md]]
 
-### {目录2名称}
+### {Directory 2 Name}
 #[[file:{path/to/dir2}/README.md]]
 ```
 
-### folder-readme.md 模板
+### folder-readme.md Template
 
 ```markdown
 # {FOLDER_NAME}
 
-<!-- 一旦我所属的文件夹有所变化，请更新我 -->
+<!-- Update me when my parent folder changes -->
 
-## 架构说明
+## Architecture Description
 
 {ARCHITECTURE_DESCRIPTION}
 
-## 文件索引
+## File Index
 
 {FILE_INDEX}
 
-## 更新提醒
+## Update Reminder
 
-任何文件变更后，请更新此文档和相关的上级文档。
+After any file changes, please update this document and related parent documents.
 ```
 
-### file-header-ts.txt 模板
+### file-header-ts.txt Template
 
 ```
-// input: {输入描述}
-// output: {输出描述}
-// pos: {架构位置描述}
-// 一旦我被更新，务必更新我的开头注释，以及所属的文件夹的 README.md
+// input: {input description}
+// output: {output description}
+// pos: {architecture position}
+// When I am updated, be sure to update my header comment and the README.md of my parent folder.
 ```
 
-## 注意事项
+## Notes
 
-- **Kiro Steering 驱动**: 核心机制依赖 Kiro 的 Steering 功能
-- **inclusion: always**: 确保规则每次都加载，不遗漏
-- **文件引用语法**: 使用 `#[[file:path]]` 自动拉取内容
-- **自指提醒**: 文档中包含更新提醒，触发 AI 自动维护
-- **分形一致性**: 所有目录 README.md 遵循相同模板结构
-- **技术栈适配**: 根据项目实际使用的语言选择模板
-- **增量更新**: 如果项目已有 README.md，先读取再更新
+- **Kiro Steering-driven**: The core mechanism relies on Kiro's Steering feature.
+- **inclusion: always**: Ensures the rules are loaded every time, without omission.
+- **File Reference Syntax**: Use `#[[file:path]]` to automatically fetch content.
+- **Self-referential Reminder**: Documents contain update reminders to trigger AI's automatic maintenance.
+- **Fractal Consistency**: All directory README.md files follow the same template structure.
+- **Tech Stack Adaptation**: Select templates based on the actual language used in the project.
+- **Incremental Updates**: If the project already has a README.md, read it before updating.

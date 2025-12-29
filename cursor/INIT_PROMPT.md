@@ -1,23 +1,23 @@
-# Fractal Docs 初始化任务
+# Fractal Docs Initialization Task
 
-请帮我在这个项目中初始化 Fractal Docs 自维护文档系统。
+Please help me initialize the Fractal Docs self-maintaining documentation system in this project.
 
-## 你需要做的
+## What you need to do
 
-### 1. 分析项目结构
+### 1. Analyze Project Structure
 
-- 扫描项目目录结构
-- 识别技术栈（TypeScript/Go/Rust/Python 等）
-- 确定核心业务目录（如 src/components、src/services 等）
-- 列出建议索引的目录，让我确认
+- Scan the project directory structure
+- Identify the tech stack (TypeScript/Go/Rust/Python, etc.)
+- Determine the core business directories (e.g., src/components, src/services, etc.)
+- List the recommended directories for indexing and let me confirm
 
-### 2. 创建 .cursor/rules/ 规则文件
+### 2. Create .cursor/rules/ Rule Files
 
-#### 2.1 创建 `.cursor/rules/doc-maintenance.mdc`
+#### 2.1 Create `.cursor/rules/doc-maintenance.mdc`
 
 ```markdown
 ---
-description: 文档维护规则 - 修改代码时自动维护文档
+description: Documentation Maintenance Rules - Automatically maintain docs when code changes
 globs:
   - "**/*.ts"
   - "**/*.tsx"
@@ -29,88 +29,88 @@ globs:
 alwaysApply: true
 ---
 
-# 文档维护规则
+# Documentation Maintenance Rules
 
-当你修改或创建代码文件时，**必须**执行以下步骤：
+When you modify or create code files, you **must** perform the following steps:
 
-## 0. 先读取现有文档（重要！）
+## 0. Read Existing Documentation First (Important!)
 
-修改文件前，**必须先检查并读取**：
-- 所属文件夹是否已有 README.md？**如果有，先读取它**
-- 文件是否已有头部注释？**如果有，保留并更新**
+Before modifying a file, you **must check and read**:
+- Does the parent folder already have a README.md? **If so, read it first**
+- Does the file already have a header comment? **If so, preserve and update it**
 
-⚠️ **禁止直接覆盖创建**！
+⚠️ **Do not overwrite directly**!
 
-## 1. 文件头部注释
+## 1. File Header Comment
 
-每个代码文件必须有标准三行注释：
+Each code file must have a standard three-line comment:
 ```
-// input: {输入描述}
-// output: {输出描述}
-// pos: {架构位置描述}
+// input: {input description}
+// output: {output description}
+// pos: {architecture position}
 ```
 
-## 2. 文件夹 README.md
+## 2. Folder README.md
 
-修改文件后，更新所属文件夹的 README.md：
-- 如果已存在：先读取，增量更新文件索引
-- 如果不存在：创建新文件
+After modifying a file, update the README.md of its parent folder:
+- If it already exists: read it first, then incrementally update the file index
+- If it doesn't exist: create a new file
 
-README.md 格式：
+README.md format:
 ```markdown
-# {目录名}
+# {Directory Name}
 
-<!-- 一旦我所属的文件夹有所变化，请更新我 -->
+<!-- Update me when my parent folder changes -->
 
-## 架构说明
+## Architecture Description
 
-{3行以内的描述}
+{A description within 3 lines}
 
-## 文件索引
+## File Index
 
-- `file1.ts` - 功能描述
+- `file1.ts` - Feature description
 ```
 
-## 3. 上级目录传播
+## 3. Propagate to Parent Directories
 
-检查上级目录的 README.md 是否需要更新。
+Check if the README.md in the parent directory needs to be updated.
 
-## 4. 文档维护报告
+## 4. Documentation Maintenance Report
 
-完成后输出报告。
+Output a report upon completion.
 ```
 
-#### 2.2 创建 `.cursor/rules/project-structure.mdc`
+#### 2.2 Create `.cursor/rules/project-structure.mdc`
 
-根据分析结果创建，格式：
+Create based on the analysis results, with the following format:
 
 ```markdown
 ---
-description: 项目结构导航 - 帮助理解项目架构
+description: Project Structure Navigation - Helps in understanding the project architecture
 alwaysApply: true
 ---
 
-# 项目结构导航
+# Project Structure Navigation
 
-{项目简介}
+{Project Introduction}
 
-## 核心目录索引
+## Core Directory Index
 
-### {目录1名称}
+### {Directory 1 Name}
 @{path/to/dir1/README.md}
 
-### {目录2名称}
+### {Directory 2 Name}
 @{path/to/dir2/README.md}
 ```
 
-### 3. 创建核心目录的 README.md
+### 3. Create README.md for Core Directories
 
-为每个核心目录创建 README.md。
+Create a README.md for each core directory.
 
-### 4. 确认完成
+### 4. Confirm Completion
 
-完成后告诉我生成了哪些文件。
+Tell me which files were generated upon completion.
 
-## 语言偏好
+## Language Preference
 
-请使用中文生成所有文档和注释。
+Please use English to generate all documentation and comments.

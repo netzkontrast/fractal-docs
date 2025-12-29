@@ -1,35 +1,35 @@
-# Windsurf 初始化指南
+# Windsurf Initialization Guide
 
-## 核心概念
+## Core Concepts
 
-- **INIT_PROMPT.md** = 一次性初始化指令（复制到 chat 执行后就不需要了）
-- **生成的规则** = 持久配置（每次 AI 交互都会加载）
+- **INIT_PROMPT.md** = One-time initialization instructions (no longer needed after copying to chat)
+- **Generated Rules** = Persistent configuration (loaded with each AI interaction)
 
-## 使用方法
+## How to Use
 
-1. 将 `INIT_PROMPT.md` 的内容复制到 Windsurf 的 chat 中
-2. AI 会分析你的项目并生成 `.windsurf/rules/` 配置文件
-3. 初始化完成后，`INIT_PROMPT.md` 就不再需要了
+1. Copy the content of `INIT_PROMPT.md` into the Windsurf chat
+2. The AI will analyze your project and generate `.windsurf/rules/` configuration files
+3. After initialization, `INIT_PROMPT.md` is no longer needed
 
-## 初始化后会生成
+## What's Generated After Initialization
 
 ```
 your-project/
 ├── .windsurf/
 │   └── rules/
-│       ├── doc-maintenance.md          # 文档维护规则（持久）
-│       └── project-structure.md        # 项目结构导航（持久）
-└── [核心目录]/README.md                # 目录索引（持久）
+│       ├── doc-maintenance.md          # Documentation maintenance rules (persistent)
+│       └── project-structure.md        # Project structure navigation (persistent)
+└── [core-directory]/README.md          # Directory index (persistent)
 ```
 
-## 生成的规则说明
+## Explanation of Generated Rules
 
-| 文件 | 作用 | 加载时机 |
-|------|------|----------|
-| `doc-maintenance.md` | 文档维护规则 | 始终加载（trigger: always_on） |
-| `project-structure.md` | 项目结构导航 | 始终加载（trigger: always_on） |
+| File | Purpose | When Loaded |
+|------|---------|-------------|
+| `doc-maintenance.md` | Documentation maintenance rules | Always loaded (trigger: always_on) |
+| `project-structure.md` | Project structure navigation | Always loaded (trigger: always_on) |
 
-## Windsurf Rules 特性
+## Windsurf Rules Features
 
-- 支持 4 种触发模式：always_on, manual, model_decision, glob
-- 不支持文件引用语法
+- Supports 4 trigger modes: always_on, manual, model_decision, glob
+- Does not support file reference syntax
